@@ -15,14 +15,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yanivian.riddler"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yanivian.riddler"
+      "package": "com.yanivian.riddler",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
