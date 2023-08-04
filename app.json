@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "riddler",
-    "slug": "riddler",
+    "name": "Riddlr by Yanivian",
+    "slug": "riddlr",
     "version": "1.0.1",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -9,7 +9,8 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.yanivian.riddler",
+      "name": "Riddlr",
+      "bundleIdentifier": "com.yanivian.riddlr",
       "splash": {
         "dark": {
           "image": "./assets/adaptive-splash.png",
@@ -25,7 +26,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yanivian.riddler",
+      "package": "com.yanivian.riddlr",
       "splash": {
         "dark": {
           "image": "./assets/adaptive-splash.png",
@@ -41,7 +42,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "b5aaa7be-f45d-4198-b2f0-bb90a56bdfa9"
+        "projectId": "7497b59a-b7bf-420a-a4bf-d745bf521058"
       }
     }
   }

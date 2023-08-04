@@ -26,9 +26,8 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
 
   const styles = StyleSheet.create({
     card: {
-      borderColor: theme.colors.onSecondaryContainer,
-      borderWidth: 1,
-      backgroundColor: theme.colors.secondaryContainer,
+      borderColor: theme.colors.primary,
+      backgroundColor: 'transparent',
       marginHorizontal: dim.width * .05,
       width: dim.width * .9 - 40,
     },
@@ -39,7 +38,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
 
   return (
     <Card
-      mode='elevated'
+      mode='outlined'
       style={styles.card}
     >
       <Card.Content>
@@ -61,8 +60,8 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
                   key={index}
                   onPress={() => guess(item)}
                   style={{
-                    backgroundColor: theme.colors.secondaryContainer,
-                    borderColor: theme.colors.onSecondaryContainer,
+                    backgroundColor: theme.colors.primaryContainer,
+                    borderColor: theme.colors.primary,
                     borderRadius: theme.roundness,
                     borderWidth: 1,
                     elevation: 2,
@@ -74,7 +73,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
                 >
                   <View
                     style={{
-                      flexDirection: isPortraitMode ? 'row' : 'column',
+                      flexDirection: 'row',
                       alignItems: 'center',
                       alignContent: 'center',
                       justifyContent: 'center',
@@ -85,7 +84,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
                     </Text>
                     {guesses.includes(item) &&
                       <Text
-                        style={{ marginLeft: isPortraitMode && 8 || 0 }}
+                        style={{ marginLeft: 8 }}
                         variant='bodyMedium'
                       >
                         {item === props.riddle.correctAnswer ? '✅' : '❌'}

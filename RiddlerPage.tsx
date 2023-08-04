@@ -41,7 +41,7 @@ export default function RiddlerPage() {
     },
     container: {
       alignItems: 'center',
-      backgroundColor: theme.colors.primaryContainer,
+      backgroundColor: theme.colors.background,
       flex: 1,
       flexGrow: 1,
     },
@@ -51,9 +51,9 @@ export default function RiddlerPage() {
       marginVertical: dim.height * .03,
     },
     textInput: {
-      backgroundColor: theme.colors.primaryContainer,
       flexGrow: 1,
       flex: 1,
+      backgroundColor: 'transparent',
     },
     textInputContainer: {
       alignItems: 'center',
@@ -104,7 +104,7 @@ export default function RiddlerPage() {
           inputMode='text'
           mode='outlined'
           onChangeText={setTopic}
-          outlineColor={theme.colors.onPrimaryContainer}
+          outlineColor={theme.colors.primary}
           outlineStyle={{
             borderRadius: theme.roundness,
           }}
@@ -150,6 +150,7 @@ export default function RiddlerPage() {
           renderItem={({ item }) => <RiddleCard riddle={item} />}
           contentContainerStyle={{
             alignItems: 'flex-start',
+            marginBottom: 5,
           }}
         />
       </View>
