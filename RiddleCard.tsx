@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Dimensions, FlatList, TouchableOpacity, View } from 'react-native'
+import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Card, Text, useTheme } from 'react-native-paper'
 import { RiddleModel } from './GenerativeLanguageService'
 
 export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element {
-  const dim = Dimensions.get('window')
   const theme = useTheme()
+
+  const [dim, setDim] = useState(Dimensions.get('window'))
+  useEffect(() => {
+    Dimensions.addEventListener('change', ({ window }) => setDim(window))
+  }, [])
+  const isPortraitMode = dim.width < dim.height
 
   const [options, setOptions] = useState<Array<string>>([])
   const [guesses, setGuesses] = useState<Array<string>>([])
@@ -19,69 +24,78 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
     setGuesses([...guesses, option].sort())
   }, [guesses])
 
+  const styles = StyleSheet.create({
+    card: {
+      borderColor: theme.colors.onSecondaryContainer,
+      borderWidth: 1,
+      backgroundColor: theme.colors.secondaryContainer,
+      marginHorizontal: dim.width * .05,
+      width: dim.width * .9 - 40,
+    },
+    question: {
+      marginBottom: dim.height * .01,
+    },
+  })
+
   return (
     <Card
       mode='elevated'
-      style={{
-        borderColor: theme.colors.onSecondaryContainer,
-        borderWidth: 1,
-        backgroundColor: theme.colors.secondaryContainer,
-        marginHorizontal: dim.width * .025,
-        marginVertical: dim.width * .1,
-        width: dim.width * .7,
-        maxHeight: dim.height * .7,
-      }}
+      style={styles.card}
     >
       <Card.Content>
         <View>
           <Text
-            style={{
-              marginVertical: dim.width * .01,
-              paddingHorizontal: dim.width * .05,
-              paddingVertical: dim.height * .01,
-              verticalAlign: 'middle',
-              textAlign: 'justify',
-            }}
+            style={styles.question}
             variant='bodyLarge'
           >
             {props.riddle.question}
           </Text>
-          <FlatList
-            data={options}
-            keyExtractor={(item, index) => `${index}`}
-            renderItem={({ item }) => {
+          <View style={{
+            alignItems: 'flex-start',
+            flexDirection: isPortraitMode ? 'column' : 'row',
+            flexWrap: 'wrap',
+          }}>
+            {options.map((item, index) => {
               return (
                 <TouchableOpacity
+                  key={index}
                   onPress={() => guess(item)}
                   style={{
-                    elevation: 2,
-                    borderWidth: 1,
-                    borderColor: theme.colors.onSecondaryContainer,
                     backgroundColor: theme.colors.secondaryContainer,
-                    borderRadius: dim.width * .03,
-                    marginVertical: dim.width * .01,
+                    borderColor: theme.colors.onSecondaryContainer,
+                    borderRadius: theme.roundness,
+                    borderWidth: 1,
+                    elevation: 2,
+                    marginHorizontal: dim.width * .01,
+                    marginVertical: dim.height * .01,
                     paddingHorizontal: dim.width * .05,
                     paddingVertical: dim.height * .01,
                   }}
                 >
-                  <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ flexGrow: 1 }}
-                      variant='bodyMedium'
-                    >
+                  <View
+                    style={{
+                      flexDirection: isPortraitMode ? 'row' : 'column',
+                      alignItems: 'center',
+                      alignContent: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text variant='bodyMedium'>
                       {item}
                     </Text>
                     {guesses.includes(item) &&
                       <Text
+                        style={{ marginLeft: isPortraitMode && 8 || 0 }}
                         variant='bodyMedium'
                       >
-                        {item === props.riddle.correctAnswer ? ' ✅' : ' ❌'}
+                        {item === props.riddle.correctAnswer ? '✅' : '❌'}
                       </Text>
                     }
                   </View>
                 </TouchableOpacity>
               )
-            }}
-          />
+            })}
+          </View>
         </View>
       </Card.Content>
     </Card>

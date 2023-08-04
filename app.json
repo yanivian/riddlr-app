@@ -3,20 +3,23 @@
     "name": "riddler",
     "slug": "riddler",
     "version": "1.0.1",
-    "orientation": "portrait",
+    "orientation": "automatic",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "userInterfaceStyle": "automatic",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.yanivian.riddler"
+      "bundleIdentifier": "com.yanivian.riddler",
+      "splash": {
+        "dark": {
+          "image": "./assets/adaptive-splash.png",
+          "resizeMode": "cover"
+        },
+        "image": "./assets/splash.png",
+        "resizeMode": "cover"
+      },
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -24,6 +27,14 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.yanivian.riddler",
+      "splash": {
+        "dark": {
+          "image": "./assets/adaptive-splash.png",
+          "resizeMode": "cover"
+        },
+        "image": "./assets/splash.png",
+        "resizeMode": "cover"
+      },
       "versionCode": 2
     },
     "web": {
