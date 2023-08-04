@@ -3,7 +3,6 @@
     "name": "riddler",
     "slug": "riddler",
     "version": "1.0.1",
-    "orientation": "automatic",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "assetBundlePatterns": [
