@@ -28,15 +28,17 @@ export default function RiddlerPage() {
       marginBottom: dim.height * .1,
       marginTop: dim.height * .1,
     },
-    appTitleText: {
+    appTitle: {
       backgroundColor: theme.colors.primaryContainer,
       borderRadius: dim.width,
       borderColor: theme.colors.primary,
       borderWidth: Math.min(dim.width, dim.height) * .01,
-      color: theme.colors.primary,
-      letterSpacing: 16,
       paddingHorizontal: dim.width * .05,
       paddingVertical: dim.height * .01,
+    },
+    appTitleText: {
+      color: theme.colors.primary,
+      letterSpacing: 16,
       verticalAlign: 'middle',
     },
     container: {
@@ -84,15 +86,21 @@ export default function RiddlerPage() {
 
   return (
     <View style={styles.container}>
-      <Text
+      <View
         style={[
-          styles.appTitleText,
+          styles.appTitle,
           riddles.length > 0 ? styles.appTitleIsConstricted : styles.appTitleIsExpanded,
         ]}
-        variant='displaySmall'
       >
-        rιδδlr
-      </Text>
+        <Text
+          style={[
+            styles.appTitleText,
+          ]}
+          variant='displaySmall'
+        >
+          rιδδlr
+        </Text>
+      </View>
       <View style={styles.textInputContainer}>
         <TextInput
           autoCapitalize='words'
@@ -114,6 +122,7 @@ export default function RiddlerPage() {
         />
         <View
           style={{
+            alignItems: 'center',
             width: IconButtonContainerWidth,
           }}
         >
@@ -125,7 +134,6 @@ export default function RiddlerPage() {
               size={20}
               style={{
                 margin: 0,
-                padding: 0,
               }}
             />
           }
