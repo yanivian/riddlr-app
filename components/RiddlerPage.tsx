@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, View } from 'react-native'
 import { IconButton, Text, TextInput, useTheme } from 'react-native-paper'
-import GenerativeLanguageService, { RiddleModel } from './GenerativeLanguageService'
+import GenerativeLanguageService, { RiddleModel } from '../services/GenerativeLanguageService'
 import RiddleCard from './RiddleCard'
 
 // TODO: Move to server.

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Card, Text, useTheme } from 'react-native-paper'
-import { RiddleModel } from './GenerativeLanguageService'
+import { RiddleModel } from '../services/GenerativeLanguageService'
 
 export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element {
   const theme = useTheme()
