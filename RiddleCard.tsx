@@ -28,8 +28,8 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
     card: {
       borderColor: theme.colors.primary,
       backgroundColor: 'transparent',
-      marginHorizontal: dim.width * .05,
-      width: dim.width * .9 - 40,
+      marginHorizontal: dim.width * .06,
+      width: dim.width * .88 - 40,
     },
     question: {
       marginBottom: dim.height * .01,

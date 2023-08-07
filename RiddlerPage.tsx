@@ -22,7 +22,7 @@ export default function RiddlerPage() {
   const styles = StyleSheet.create({
     appTitleIsConstricted: {
       marginBottom: dim.height * .02,
-      marginTop: Math.max(30, dim.height * .05),
+      marginTop: Math.max(50, dim.height * .05),
     },
     appTitleIsExpanded: {
       marginBottom: dim.height * .1,
@@ -60,7 +60,7 @@ export default function RiddlerPage() {
     textInputContainer: {
       alignItems: 'center',
       flexDirection: 'row',
-      paddingHorizontal: dim.width * .05,
+      paddingHorizontal: dim.width * .06,
     },
   })
 
