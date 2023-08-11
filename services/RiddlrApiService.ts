@@ -70,5 +70,5 @@ export default class RiddlrApiService {
     this.baseUrl_ = baseUrl
   }
 
-  private static baseUrlProd_ = "https://riddlr-dot-yanivian.wl.r.appspot.com"
+  private static baseUrlProd_ = "https://api.riddlr.yanivian.com"
 }
