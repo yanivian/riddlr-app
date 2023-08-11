@@ -2,7 +2,7 @@
   "expo": {
     "name": "Riddlr by Yanivian",
     "slug": "riddlr",
-    "version": "1.0.1",
+    "version": "1.1",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "assetBundlePatterns": [
@@ -11,6 +11,7 @@
     "ios": {
       "name": "Riddlr",
       "bundleIdentifier": "com.yanivian.riddlr",
+      "buildNumber": 3,
       "splash": {
         "dark": {
           "image": "./assets/adaptive-splash.png",
@@ -35,7 +36,7 @@
         "image": "./assets/splash.png",
         "resizeMode": "cover"
       },
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
