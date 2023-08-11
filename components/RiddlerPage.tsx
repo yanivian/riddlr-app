@@ -1,17 +1,17 @@
 import { StatusBar } from 'expo-status-bar'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, View } from 'react-native'
 import { IconButton, Text, TextInput, useTheme } from 'react-native-paper'
-import GenerativeLanguageService, { RiddleModel } from '../services/GenerativeLanguageService'
+import RiddlrApiService, { RiddlesForTopic } from '../services/RiddlrApiService'
 import RiddleCard from './RiddleCard'
+import { UidContext } from './UidProvider'
 
-// TODO: Move to server.
-const ApiKey = 'AIzaSyC6doGY1WaMe3-ORdpzs2DktDYB3YsThzA'
 const TopicPlaceholder = 'Food Trivia'
 const IconButtonContainerWidth = 40
 
 export default function RiddlerPage() {
   const theme = useTheme()
+  const uid = useContext(UidContext)
 
   const [dim, setDim] = useState(Dimensions.get('window'))
   useEffect(() => {
@@ -66,21 +66,17 @@ export default function RiddlerPage() {
 
   const [busy, setBusy] = useState(false)
   const [topic, setTopic] = useState('')
-  const [riddles, setRiddles] = useState<Array<RiddleModel>>([])
+  const [riddlesForTopic, setRiddlesForTopic] = useState<RiddlesForTopic>()
 
   async function fetchRiddles() {
     setBusy(true)
-    setRiddles([])
-    const service = GenerativeLanguageService.get(ApiKey)
-    return service.generateRiddles({
+    setRiddlesForTopic(undefined)
+    const service = RiddlrApiService.get()
+    return service.getRiddlesForTopic({
+      uid,
       topic: topic || TopicPlaceholder,
-      numRiddles: 25,
-      numIncorrectOptions: 4,
     })
-      .then(setRiddles)
-      .catch((err) => {
-        throw 'Something went wrong'
-      })
+      .then(setRiddlesForTopic)
       .finally(() => setBusy(false))
   }
 
@@ -89,7 +85,7 @@ export default function RiddlerPage() {
       <View
         style={[
           styles.appTitle,
-          riddles.length > 0 ? styles.appTitleIsConstricted : styles.appTitleIsExpanded,
+          riddlesForTopic ? styles.appTitleIsConstricted : styles.appTitleIsExpanded,
         ]}
       >
         <Text
@@ -150,18 +146,20 @@ export default function RiddlerPage() {
           }
         </View>
       </View>
-      <View style={styles.riddlesContainer}>
-        <FlatList
-          data={riddles}
-          horizontal
-          keyExtractor={(riddle, index) => `${index}`}
-          renderItem={({ item }) => <RiddleCard riddle={item} />}
-          contentContainerStyle={{
-            alignItems: 'flex-start',
-            marginBottom: 5,
-          }}
-        />
-      </View>
+      {riddlesForTopic &&
+        <View style={styles.riddlesContainer}>
+          <FlatList
+            data={riddlesForTopic.Riddles}
+            horizontal
+            keyExtractor={(riddle, index) => `${index}`}
+            renderItem={({ item }) => <RiddleCard riddle={item} />}
+            contentContainerStyle={{
+              alignItems: 'flex-start',
+              marginBottom: 5,
+            }}
+          />
+        </View>
+      }
       <StatusBar style="auto" />
     </View>
   )

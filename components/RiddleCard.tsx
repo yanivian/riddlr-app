@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Card, Text, useTheme } from 'react-native-paper'
-import { RiddleModel } from '../services/GenerativeLanguageService'
+import { RiddleModel } from '../services/RiddlrApiService'
 
 export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element {
   const theme = useTheme()
@@ -16,7 +16,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
   const [guesses, setGuesses] = useState<Array<string>>([])
 
   useEffect(() => {
-    setOptions([props.riddle.correctAnswer, ...props.riddle.incorrectAnswers].sort())
+    setOptions([props.riddle.CorrectAnswer, ...props.riddle.IncorrectAnswers].sort())
     setGuesses([])
   }, [props.riddle])
 
@@ -47,7 +47,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
             style={styles.question}
             variant='bodyLarge'
           >
-            {props.riddle.question}
+            {props.riddle.Question}
           </Text>
           <View style={{
             alignItems: 'flex-start',
@@ -87,7 +87,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
                         style={{ marginLeft: 8 }}
                         variant='bodyMedium'
                       >
-                        {item === props.riddle.correctAnswer ? '✅' : '❌'}
+                        {item === props.riddle.CorrectAnswer ? '✅' : '❌'}
                       </Text>
                     }
                   </View>
