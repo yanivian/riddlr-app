@@ -11,7 +11,7 @@
     "ios": {
       "name": "Riddlr",
       "bundleIdentifier": "com.yanivian.riddlr",
-      "buildNumber": 3,
+      "buildNumber": "3",
       "splash": {
         "dark": {
           "image": "./assets/adaptive-splash.png",
