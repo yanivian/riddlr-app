@@ -15,6 +15,8 @@ export interface RiddleModel {
   Question: string
   CorrectAnswer: string
   IncorrectAnswers: Array<string>
+  Explanation: string
+  CitationURL: string
 }
 
 export default class RiddlrApiService {

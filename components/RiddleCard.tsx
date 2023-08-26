@@ -1,6 +1,7 @@
+import * as Linking from 'expo-linking'
 import { useCallback, useEffect, useState } from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Card, Text, useTheme } from 'react-native-paper'
+import { Card, IconButton, Text, useTheme } from 'react-native-paper'
 import { RiddleModel } from '../services/RiddlrApiService'
 
 export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element {
@@ -14,15 +15,21 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
 
   const [options, setOptions] = useState<Array<string>>([])
   const [guesses, setGuesses] = useState<Array<string>>([])
+  const [showCitationLink, setShowCitationLink] = useState(false)
 
   useEffect(() => {
     setOptions([props.riddle.CorrectAnswer, ...props.riddle.IncorrectAnswers].sort())
     setGuesses([])
+    Linking.canOpenURL(props.riddle.CitationURL).then(setShowCitationLink)
   }, [props.riddle])
 
   const guess = useCallback((option: string) => {
     setGuesses([...guesses, option].sort())
   }, [guesses])
+
+  function openCitationLink() {
+    Linking.openURL(props.riddle.CitationURL)
+  }
 
   const styles = StyleSheet.create({
     card: {
@@ -59,6 +66,7 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
                 <TouchableOpacity
                   key={index}
                   onPress={() => guess(item)}
+                  disabled={guesses.length > 0}
                   style={{
                     backgroundColor: theme.colors.primaryContainer,
                     borderColor: theme.colors.primary,
@@ -95,6 +103,32 @@ export default function RiddleCard(props: { riddle: RiddleModel }): JSX.Element 
               )
             })}
           </View>
+          {guesses.length > 0 &&
+            <View style={{
+              alignItems: 'flex-end',
+              flexDirection: 'row',
+              paddingVertical: dim.height * .01,
+            }}>
+              <Text
+                style={{ flexShrink: 1 }}
+                variant='bodyLarge'
+              >
+                {props.riddle.Explanation}
+              </Text>
+              {showCitationLink &&
+                <IconButton
+                  icon='link-variant'
+                  iconColor={theme.colors.primary}
+                  onPress={openCitationLink}
+                  size={20}
+                  style={{
+                    margin: 0,
+                    marginLeft: 4,
+                  }}
+                />
+              }
+            </View>
+          }
         </View>
       </Card.Content>
     </Card>
