@@ -10,9 +10,8 @@
       "**/*"
     ],
     "ios": {
-      "name": "Riddlr",
       "bundleIdentifier": "com.yanivian.riddlr",
-      "buildNumber": "3",
+      "buildNumber": "4",
       "splash": {
         "dark": {
           "image": "./assets/adaptive-splash.png",
@@ -37,7 +36,7 @@
         "image": "./assets/splash.png",
         "resizeMode": "cover"
       },
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"
