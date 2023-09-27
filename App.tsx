@@ -1,12 +1,12 @@
 import AppTheme from './AppTheme'
-import RiddlerPage from './components/RiddlerPage'
+import RiddlrPage from './components/RiddlrPage'
 import UidProvider from './components/UidProvider'
 
 export default function App() {
   return (
     <AppTheme>
       <UidProvider>
-        <RiddlerPage />
+        <RiddlrPage />
       </UidProvider>
     </AppTheme>
   )

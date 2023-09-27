@@ -9,7 +9,7 @@ import { UidContext } from './UidProvider'
 const TopicPlaceholder = 'Food Trivia'
 const IconButtonContainerWidth = 40
 
-export default function RiddlerPage() {
+export default function RiddlrPage() {
   const theme = useTheme()
   const uid = useContext(UidContext)
 
